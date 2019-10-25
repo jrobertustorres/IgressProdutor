@@ -11,10 +11,26 @@ import { TabsPage } from '../pages/tabs/tabs';
 export class MyApp {
   rootPage:any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(
+              platform: Platform, 
+              statusBar: StatusBar, 
+              splashScreen: SplashScreen) {
     platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      // this.checkNetwork();
+      // abaixo verificamos se a intenet cair depois que o cliente já entrou no app
+      // this.network.onDisconnect().subscribe(() => {
+        // this.checkNetwork();
+      // });
+      // if (this.platform.is('cordova')) {
+      //   localStorage.setItem(Constants.UUID, this.device.uuid);
+      //   this.appVersion.getVersionNumber().then((version) => {
+      //     localStorage.setItem(Constants.VERSION_NUMBER, version);
+      //   })
+      // }
+      // // para testes no browser
+      // else {
+      //   localStorage.setItem(Constants.VERSION_NUMBER, '0.0.1');
+      // }
       statusBar.styleDefault();
       splashScreen.hide();
     });

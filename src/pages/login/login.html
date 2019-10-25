@@ -1,0 +1,57 @@
+<ion-header no-border style="background-color: #444444">
+
+    <div class="div-style-logo">
+        <img src="assets/imgs/logo_produtor_branca.png" class="logo-style">
+        <!-- <span class="span-fornecedor">{{ 'FORNECEDOR_UPPER' | translate }}</span> -->
+    </div>
+    <div class="div-home-text">
+        <!-- <span style="text-align: center; ">{{ 'LABEL_CONECTANDO_VOCE' | translate }}</span> -->
+    </div>
+
+</ion-header>
+
+<ion-content style="background-color: #444444">
+    <div class="spinner-center" *ngIf="showLoading">
+        <ion-spinner name="crescent"></ion-spinner>
+    </div>
+            
+    <div *ngIf="errorConnection" text-wrap>
+        <p style="text-align: center">
+            <ion-icon ios="md-link" md="md-link" item-start color="navBarColor" style="font-size: 50px;"></ion-icon>
+        </p>
+                
+        <p style="text-align: center;">
+            <span class="spam-error-connection">{{ errorConnection }}</span>
+        </p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="submeterLogin()">
+
+        <ion-item style="background: #444444">
+            <ion-label floating>E-mail</ion-label>
+            <ion-input formControlName="email" type="email" spellcheck="false" autocapitalize="off" style="color: #fff;"></ion-input>
+        </ion-item>
+        <div *ngIf="(!loginForm.get('email').valid && loginForm.get('email').touched) && !loginForm.get('email').hasError('pattern')" [ngClass]="'class-error-form-login'" >campo obrigatório</div>
+        <div *ngIf="loginForm.get('email').hasError('pattern')" [ngClass]="'class-error-form-login'" >e-mail inválido</div>
+
+        <ion-item style="background: #444444">
+            <ion-label floating>Senha</ion-label>
+            <ion-input formControlName="senha" id="senha" type="text" *ngIf="showPwd" style="color: #fff;"></ion-input>
+            <ion-input formControlName="senha" id="senha" type="password" *ngIf="!showPwd" style="color: #fff;"></ion-input>
+            <button icon-only ion-button clear type="button" item-right color="dark" (click)="showPwd=!showPwd">
+                <ion-icon *ngIf="showPwd" name="eye"></ion-icon>
+                <ion-icon *ngIf="!showPwd" name="eye-off"></ion-icon>
+            </button>
+        </ion-item>
+        <div *ngIf="!loginForm.get('senha').valid && loginForm.get('senha').touched" [ngClass]="'class-error-form-login'" >campo obrigatório</div>
+
+        <div padding style="text-align: center;">
+            <button ion-button block outline type="submit" style="color: #FDB313; border-color: #FDB313;">ENTRAR</button>
+        </div>
+    </form>
+
+    <div class="forgot-pass-style-div">
+        <a (click)="openRecuperarSenhaPage()" style="color: #fff">Esqueci minha senha</a>
+    </div>
+
+</ion-content>

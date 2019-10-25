@@ -1,5 +1,11 @@
-<ion-tabs>
-  <ion-tab [root]="tab1Root" tabTitle="Home" tabIcon="home"></ion-tab>
-  <ion-tab [root]="tab2Root" tabTitle="About" tabIcon="information-circle"></ion-tab>
-  <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab>
+<ion-tabs *ngIf="!idUsuarioLogado">
+  <ion-tab [root]="tab4Root" tabTitle="Login" tabIcon=""></ion-tab>
+  <!-- <ion-tab [root]="tab2Root" tabsHideOnSubPages="true" tabTitle="About" tabIcon="information-circle"></ion-tab> -->
+  <!-- <ion-tab [root]="tab3Root" tabTitle="Contact" tabIcon="contacts"></ion-tab> -->
+  <!-- <ion-tab [root]="tab4Root" tabTitle="Login" tabIcon="contacts"></ion-tab> -->
+</ion-tabs>
+
+<ion-tabs *ngIf="idUsuarioLogado">
+  <ion-tab [root]="tab1Root" tabTitle="Eventos" tabIcon="ios-calendar"></ion-tab>
+  <ion-tab [root]="tab4Root" tabTitle="Config." tabIcon="ios-person"></ion-tab>
 </ion-tabs>
