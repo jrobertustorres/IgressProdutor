@@ -25,11 +25,7 @@ export class UsuarioService {
             resolve(data);
             localStorage.setItem(Constants.ID_USUARIO, data.idUsuario);
             localStorage.setItem(Constants.TOKEN_USUARIO, data.token);
-            // localStorage.setItem(Constants.IS_CADASTRO_COMPLETO, data.isCadastroCompleto);
-            // localStorage.setItem(Constants.IS_CADASTRO_ENDERECO_COMPLETO, data.isCadastroEnderecoCompleto);
-
             this.userChangeEvent.emit(data.nomePessoa);
-            // this.emailPessoaChangeEvent.emit(data.email);
           }, (err) => {
             reject(err.json());
           });
@@ -53,11 +49,7 @@ export class UsuarioService {
           .map(function (res) { return res.json(); })
           .subscribe(data => {
             resolve(data);
-            // this.userChangeEvent.emit(usuarioEntity.nomePessoa);
-            // this.emailPessoaChangeEvent.emit(usuarioEntity.emailUsuario);
-
             this.userChangeEvent.emit(data.nomePessoa);
-            // this.emailPessoaChangeEvent.emit(data.email);
           }, (err) => {
             reject(err.json());
           });

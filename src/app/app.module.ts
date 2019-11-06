@@ -6,6 +6,9 @@ import { MyApp } from './app.component';
 import { MaskUtil } from '../utilitarios/mask';
 import { Device } from '@ionic-native/device';
 import { EmailComposer } from '@ionic-native/email-composer';
+import { AppVersion } from '@ionic-native/app-version';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { NativeAudio } from '@ionic-native/native-audio';
 // import { TabsService } from '.../shared/services/tabs.service';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -20,6 +23,7 @@ import { LoginPage } from '../pages/login/login';
 import { RecuperarSenhaPage } from '../pages/recuperar-senha/recuperar-senha';
 import { HomePage } from '../pages/home/home';
 import { EditarPerfilPage } from '../pages/editar-perfil/editar-perfil';
+import { ValidaQrcodePage } from '../pages/valida-qrcode/valida-qrcode';
 
 //ENTITIES
 import { UsuarioEntity } from '../model/usuario-entity';
@@ -32,6 +36,7 @@ import { LoginService } from '../providers/login-service';
 import { UsuarioService } from '../providers/usuario-service';
 import { EventoService } from '../providers/evento-service';
 import { VersaoAppService } from '../providers/versao-app-service';
+import { ValidaIngressoService } from '../providers/valida-ingresso-service';
 
 
 @NgModule({
@@ -43,6 +48,7 @@ import { VersaoAppService } from '../providers/versao-app-service';
     LoginPage,
     RecuperarSenhaPage,
     EditarPerfilPage,
+    ValidaQrcodePage,
     TabsPage
   ],
   imports: [
@@ -63,6 +69,7 @@ import { VersaoAppService } from '../providers/versao-app-service';
     LoginPage,
     RecuperarSenhaPage,
     EditarPerfilPage,
+    ValidaQrcodePage,
     TabsPage
   ],
   providers: [
@@ -71,6 +78,9 @@ import { VersaoAppService } from '../providers/versao-app-service';
     MaskUtil,
     Device,
     EmailComposer,
+    AppVersion,
+    BarcodeScanner,
+    NativeAudio,
     UsuarioEntity,
     IngressoListEntity,
     VersaoAppEntity,
@@ -79,6 +89,7 @@ import { VersaoAppService } from '../providers/versao-app-service';
     UsuarioService,
     EventoService,
     VersaoAppService,
+    ValidaIngressoService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -5,6 +5,7 @@ import { Device } from '@ionic-native/device';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 //PAGES
+import { LoginPage } from '../login/login';
 // import { MeusDadosPage } from '../meus-dados/meus-dados';
 // import { MinhaSenhaPage } from '../minha-senha/minha-senha';
 // import { CadastroCartaoPage } from '../cadastro-cartao/cadastro-cartao';
@@ -68,18 +69,6 @@ export class EditarPerfilPage {
      this.emailComposer.open(email);
   }
 
-  // openMeusDadosPage() {
-  //   this.navCtrl.push(MeusDadosPage);
-  // }
-
-  // openMinhaSenhaPage() {
-  //   this.navCtrl.push(MinhaSenhaPage);
-  // }
-
-  // openCartaoPage() {
-  //   this.navCtrl.push(CadastroCartaoPage);
-  // }
-
   openTermos(){
     window.open('http://www.petpratico.com.br/termos-de-uso-1_0.html', '_system', 'location=yes');
   }
@@ -106,9 +95,8 @@ export class EditarPerfilPage {
             localStorage.removeItem(Constants.ID_USUARIO);
             localStorage.removeItem(Constants.TOKEN_USUARIO);
             localStorage.removeItem(Constants.NOME_PESSOA);
-            // this.events.publish('atualizaBadgeCarrinhoLogoutEvent:change', localStorage.getItem(Constants.QTD_ITENS_CARRINHO));
-            this.events.publish('usuarioLogadoEvent:change', localStorage.getItem(Constants.ID_USUARIO));
-            // this.navCtrl.parent.select(0);
+            // this.events.publish('usuarioLogadoEvent:change', localStorage.getItem(Constants.ID_USUARIO));
+            this.navCtrl.setRoot(LoginPage);
           }
         }
       ]

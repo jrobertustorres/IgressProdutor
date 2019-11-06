@@ -1,0 +1,38 @@
+<ion-header no-border>
+  <ion-navbar transparent>
+      <!-- <ion-title style="text-align: left;">
+      </ion-title> -->
+    <ion-buttons end>
+
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="content-stable">
+
+  <div style="text-align: center; line-height: 0.5;">
+    <p>
+      <span style="font-weight: 600;">
+        {{ dadosEvento.nomeEvento }}
+      </span>
+    </p>
+    <p>
+      <span style="font-weight: 500;">
+          {{ dadosEvento.dataEventoFormat }}
+      </span>
+    </p>
+    <p>
+      <span style="font-weight: 500;">
+          {{ dadosEvento.cidadeEstadoFormat }}
+      </span>
+    </p>
+
+    <button ion-button (click)="lerQrcode()"  color="secondary"class="qrcode-style">
+      <ion-icon name="md-qr-scanner" style="font-size: 30px;"></ion-icon>
+        <span style="margin-left: 10px;">VALIDAR QRCODE</span>
+      </button>
+
+
+  </div>
+
+</ion-content>

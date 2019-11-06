@@ -35,7 +35,6 @@ export class LoginPage {
               public events: Events,
               public navParams: NavParams) {
     this.usuarioEntity = new UsuarioEntity();
-    // this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ngOnInit() {
@@ -71,8 +70,6 @@ export class LoginPage {
             this.loading.dismiss();
             // this.events.publish('showButtonEvent:change', true);
           }, (err) => {
-            console.log(err);
-            console.log(err.message);
             this.message = err.message ? err.message : 'Não foi possível conectar ao servidor';
             this.loading.dismiss();
             this.alertCtrl.create({

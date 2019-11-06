@@ -14,12 +14,15 @@ import { EventoService } from '../../providers/evento-service';
 import { LoginService } from '../../providers/login-service';
 import { VersaoAppService } from '../../providers/versao-app-service';
 
+//PAGES
+import { ValidaQrcodePage } from '../valida-qrcode/valida-qrcode';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-  private loading = null;
+  // private loading = null;
   segment: string = "destaquesList"; // default button
   private versaoAppEntity: VersaoAppEntity;
   private eventoListEntity: EventoListEntity;
@@ -58,47 +61,6 @@ export class HomePage {
       this.findEventosForOrganizador(infiniteScroll);
     }, 500);
   }
-
-  // checkPlatform() {
-  //   this.segment = "proximosList";
-  //   // para testes no browser acesso direto o this.getLocationPosition()
-  //   if (this.platform.is('cordova')) {
-  //     this.getGpsStatus();
-  //   } else {
-  //     this.getLocationPosition();
-  //   }
-  //   // this.getLocationPosition();
-  // }
-
-  // getGpsStatus() {
-  //   let successCallback = (isAvailable) => { console.log('Is available? ' + isAvailable); };
-  //   let errorCallback = (e) => console.error(e);
-
-  //     this.diagnostic.isLocationEnabled().then(successCallback).catch(errorCallback);
-
-  //     // only android
-  //     this.diagnostic.isGpsLocationEnabled().then(successCallback, errorCallback);
-
-  //     this.diagnostic.isLocationEnabled()
-  //     .then((state) => {
-  //       if (state == true) {
-  //         this.getLocationPosition();
-  //       } else {
-  //         this.locationAccuracy.canRequest().then((canRequest: boolean) => {
-  //           if(canRequest) {
-  //             // the accuracy option will be ignored by iOS
-  //             this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY)
-  //             .then(() => {
-  //               this.getLocationPosition();
-  //             }).catch((error) => {
-  //               // this.showLocationText();
-  //              });
-  //           }
-
-  //         });
-  //       }
-  //     }).catch(e => console.error(e));
-  // }
 
   getAtualizacaoStatus() {
     try {
@@ -195,17 +157,6 @@ export class HomePage {
     }
   }
 
-  // getLocationPosition() {
-  //   this.showLoading = true;
-  //   this.geolocation.getCurrentPosition().then((resp) => {
-  //     // this.findEventosDestaqueAndCidadeProximosaMim(null, -19.9299007, -43.9320145);
-  //     this.findEventosDestaqueAndCidadeProximosaMim(null, resp.coords.latitude, resp.coords.longitude);
-  //    }).catch((error) => {
-  //      this.errorGetLocation();
-  //      console.log('Error getting location', error);
-  //    });
-  // }
-
   showAlertVersao(versao) {
     const alert = this.alertCtrl.create({
       title: "Atualização do aplicativo",
@@ -215,21 +166,6 @@ export class HomePage {
         text: 'OK',
           handler: () => {
             this.getPlatform(versao);
-          }
-      }]
-    });
-    alert.present();
-  }
-
-  errorGetLocation() {
-    const alert = this.alertCtrl.create({
-      title: "Falha ao obter localização",
-      subTitle: "Não foi possível obter sua localização atual",
-      buttons: [
-        {
-        text: 'OK',
-          handler: () => {
-            // this.getPlatform(versao);
           }
       }]
     });
@@ -252,11 +188,10 @@ export class HomePage {
     // this.navCtrl.push(ModalBuscaProdutosPage);
   }
   
-  // openDetalheEventoPage(idEvento: any, lastButtonDetalhe: string) {
-  //   this.navCtrl.push(DetalheEventoPage, {
-  //     idEvento: idEvento,
-  //     lastButtonDetalhe: lastButtonDetalhe
-  //   })
-  // }
+  openValidaQrcodePage(dadosEvento) {
+    this.navCtrl.push(ValidaQrcodePage, {
+      dadosEvento: dadosEvento,
+    })
+  }
 
 }

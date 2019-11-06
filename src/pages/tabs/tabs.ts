@@ -23,8 +23,6 @@ export class TabsPage {
   }
 
   ngOnInit() {
-    // localStorage.removeItem(Constants.ID_USUARIO);
     this.idUsuarioLogado = localStorage.getItem(Constants.ID_USUARIO);
-    console.log(this.idUsuarioLogado);
   }
 }
