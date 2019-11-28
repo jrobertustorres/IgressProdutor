@@ -16,7 +16,8 @@ export class ValidaIngressoService {
     try {
 
       return new Promise((resolve, reject) => {
-        this._http.post(Constants.API_URL + 'validaIngresso/',
+        this._http.post(Constants.API_URL + 'validaIngresso/'
+          + localStorage.getItem(Constants.TOKEN_USUARIO),
           JSON.stringify(ingresso), this.options)
           .map(res=>res.json())
           .subscribe(data => {

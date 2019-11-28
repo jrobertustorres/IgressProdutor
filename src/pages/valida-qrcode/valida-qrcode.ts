@@ -57,8 +57,6 @@ export class ValidaQrcodePage {
   lerQrcode() {
     this.nativeAudio.play('beep').then((onSuccess) => {
       this.barcodeScanner.scan().then(barcodeData => {
-        console.log('Barcode data ==> ', barcodeData);     
-        
         this.validaIngresso(barcodeData.text);
        }).catch(err => {
            console.log('Error', err);
@@ -74,28 +72,19 @@ export class ValidaQrcodePage {
       });
       this.loading.present();
 
-      // this.tokenIngresso = '100d84d14098452b09009598d565d3d9';
-
       this.ingressoListEntity.idEvento = this.dadosEvento.idEvento;
-
       this.ingressoListEntity.tokenIngresso = tokenIngresso;
-
-      console.log(this.ingressoListEntity);
 
       this.validaIngressoService.validaIngresso(this.ingressoListEntity)
       .then((validacaoResult: IngressoListEntity) => {
-        console.log(validacaoResult);
         this.loading.dismiss();
-        // colocar aqui um alert quando der certo
-
-
+        this.presentAlert();
       }, (err) => {
         this.loading.dismiss();
         this.alertCtrl.create({
           message: <any> this.htmlProperty(),
           subTitle: err.message ? err.message : 'Não foi possível conectar ao servidor',
           buttons: ['OK'],
-          // cssClass: 'custom-alertDanger'
         }).present();
       });
     }catch (err){
@@ -105,6 +94,15 @@ export class ValidaQrcodePage {
       console.log(err);
     }
 
+  }
+
+  presentAlert() {
+    let alert = this.alertCtrl.create({
+      // title: 'Ok',
+      subTitle: 'Ingresso validado com sucesso',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }

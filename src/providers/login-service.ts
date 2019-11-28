@@ -23,24 +23,19 @@ export class LoginService {
 
   public login(usuarioEntity) {
     try {
-      
+
       this.usuarioEntity = usuarioEntity;
       this.usuarioEntity.tokenPush = localStorage.getItem(Constants.TOKEN_PUSH);
       this.usuarioEntity.versaoApp = localStorage.getItem(Constants.VERSION_NUMBER);
       this.usuarioEntity.uuid = localStorage.getItem(Constants.UUID);
 
-      console.log(this.usuarioEntity);
-      
       return new Promise((resolve, reject) => {
-        // this.http.post(Constants.API_URL + 'loginValidador/',
-        this.http.post(Constants.API_URL + 'login/',
+        this.http.post(Constants.API_URL + 'loginValidador/',
         JSON.stringify(this.usuarioEntity), this.options)
         .map(res=>res.json())
         .subscribe(data => {
           resolve(data);
           
-            console.log(data);
-
             localStorage.setItem(Constants.TOKEN_USUARIO, data.token);
             let names = data.nomePessoa.split(" ");
             if(names[1]) {
@@ -77,8 +72,7 @@ export class LoginService {
       this.usuarioEntity.uuid = localStorage.getItem(Constants.UUID);
       
       return new Promise((resolve, reject) => {
-        // this.http.post(Constants.API_URL + 'loginByIdValidador/', 
-        this.http.post(Constants.API_URL + 'loginById/', 
+        this.http.post(Constants.API_URL + 'loginByIdValidador/', 
         JSON.stringify(usuarioEntity), this.options)
           .map(res=>res.json())
           .subscribe(data => {

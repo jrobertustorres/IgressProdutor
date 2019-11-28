@@ -30,6 +30,7 @@ export class EditarPerfilPage {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem(Constants.ID_USUARIO));
     this.versaoApp = localStorage.getItem(Constants.VERSION_NUMBER);
 
     this.events.subscribe('atualizaNomeEvent:change', (nomePessoa) => {
@@ -95,7 +96,7 @@ export class EditarPerfilPage {
             localStorage.removeItem(Constants.ID_USUARIO);
             localStorage.removeItem(Constants.TOKEN_USUARIO);
             localStorage.removeItem(Constants.NOME_PESSOA);
-            // this.events.publish('usuarioLogadoEvent:change', localStorage.getItem(Constants.ID_USUARIO));
+            this.events.publish('usuarioLogadoEvent:change', localStorage.getItem(Constants.ID_USUARIO));
             this.navCtrl.setRoot(LoginPage);
           }
         }

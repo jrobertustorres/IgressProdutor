@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { FormBuilder,	FormGroup, Validators } from '@angular/forms';
+import { Constants } from '../../app/constants';
 
 //ENTITY
 import { UsuarioEntity } from '../../model/usuario-entity';
@@ -40,7 +41,8 @@ export class LoginPage {
   ngOnInit() {
     this.loginForm 	= this.formBuilder.group({
       'email': ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
-      'senha': ['', Validators.required]
+      'senha': ['', Validators.required],
+      'ipConexao': ['']
    });
   }
 
@@ -58,6 +60,17 @@ export class LoginPage {
 
     try {
 
+      console.log(this.loginForm.value.ipConexao);
+
+      if(this.loginForm.value.ipConexao) {
+        localStorage.setItem(Constants.IP_CONEXAO, this.loginForm.value.ipConexao);
+      } else {
+        localStorage.removeItem(Constants.IP_CONEXAO);
+      }
+
+      // console.log(localStorage.getItem(Constants.IP_CONEXAO));
+
+
       if (this.loginForm.valid) {
         this.loading = this.loadingCtrl.create({
           content: ''
@@ -68,7 +81,6 @@ export class LoginPage {
           .then((usuarioEntityResult: UsuarioEntity) => {
             this.navCtrl.setRoot(HomePage);
             this.loading.dismiss();
-            // this.events.publish('showButtonEvent:change', true);
           }, (err) => {
             this.message = err.message ? err.message : 'Não foi possível conectar ao servidor';
             this.loading.dismiss();

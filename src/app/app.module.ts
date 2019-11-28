@@ -14,8 +14,6 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
 
 //PAGES
@@ -42,8 +40,6 @@ import { ValidaIngressoService } from '../providers/valida-ingresso-service';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     LoginPage,
     RecuperarSenhaPage,
@@ -63,8 +59,6 @@ import { ValidaIngressoService } from '../providers/valida-ingresso-service';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
     HomePage,
     LoginPage,
     RecuperarSenhaPage,
